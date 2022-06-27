@@ -16,7 +16,7 @@ class BaseModel:
     """
         base class of the console
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
             initiate the id of an instance with the data time
             args:
@@ -25,9 +25,16 @@ class BaseModel:
                 updated_at: the current datetime when an instance is created
                     and it will be updated when an object is changed
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = str(datetime.now())
-        self.updated_at = str(datetime.now())
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == "created_at" or key == "updated_at":
+                    setattr(self, key, datetime.fromisoformat(value))
+                else:
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = str(datetime.now())
+            self.updated_at = str(datetime.now())
 
     def __str__(self):
         """
@@ -40,7 +47,7 @@ class BaseModel:
             updates the public instance attribute
             updated_at with the current datetime
         """
-        self.updated_at = datetime.now()
+        self.updated_at = str(datetime.now())
 
     def to_dict(self):
         """
