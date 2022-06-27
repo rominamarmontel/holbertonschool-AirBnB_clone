@@ -52,12 +52,9 @@ class BaseModel:
     def to_dict(self):
         """
             returns a dictionary containing all keys/values of
-            __dict__ of the instance 
+            __dict__ of the instance
         """
         dict = {"updated_at": self.updated_at,
                 "id": self.id,
-                "created_at": self.created_at,}
+                "created_at": self.created_at}
         return dict
-
-
-
