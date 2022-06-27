@@ -136,3 +136,9 @@ $
 All tests should also pass in non-interactive mode: $ echo "python3 -m unittest discover tests" | bash
 
  
+## :couple: About us ##
+This is the first group project in Holberton Paris School in the 26 June 2022!!<br>
+If you have a question or a comment, please contact us.<br>
+Lucile DELEFORGE (4316@holbertonschool.com)<br>
+Juliette MESNILE (2550@holbertonschool.com)<br>
+Hiromi VARNIER (4336@holbertonschool.com)<br>
