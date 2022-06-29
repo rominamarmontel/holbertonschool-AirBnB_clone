@@ -94,9 +94,17 @@ class TestBaseModel(unittest.TestCase):
 
     def test_str(self):
         """Test the __str__ method"""
+        b1 = BaseModel()
+        correct_str = f"[BaseModel] ({b1.id}) {b1.__dict__}"
+        
+        self.assertEqual(correct_str, str(b1))
 
     def test_save(self):
         """Test __save__ method"""
+        b1 = BaseModel()
+        b1.save()
+        
+        self.assertNotEqual(b1.created_at, b1.updated_at)
 
     def test_to_dict(self):
         """Test to_dict method"""
