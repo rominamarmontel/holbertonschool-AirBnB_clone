@@ -3,12 +3,15 @@
     import module
 """
 import cmd
+import encodings
 import sys
 from sys import argv
 from models.base_model import BaseModel
 import models
 from models.engine.file_storage import FileStorage
 import json
+from models import storage
+
 
 
 """
@@ -93,13 +96,29 @@ class HBNBCommand(cmd.Cmd):
                 json.dump(list, f)
                 
 
-    """def do_all(self, arg):
-        Prints all string representation of all instances
+    def do_all(self, arg):
+        """Prints all string representation of all instances"""
         array = arg.split()
         if array[0] != "BaseModel":
             print("** class doesn't exist **")
-        else:"""
-            
+        else:
+            new_list = []
+            dict_obj = storage.all()
+            for key, value in dict_obj.items():
+                if array[0] == "BaseModel":
+                    new_list.append(str(value))
+            print(new_list)
+    
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id"""
+        array = arg.split()
+        if len(array) < 1:
+            print("** class name missing **")
+        elif array[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif len(array) < 2:
+            print("** instance id missing **")
+
 
 
 
