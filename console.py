@@ -105,8 +105,7 @@ class HBNBCommand(cmd.Cmd):
             new_list = []
             dict_obj = storage.all()
             for key, value in dict_obj.items():
-                if array[0] == "BaseModel":
-                    new_list.append(str(value))
+                new_list.append(str(value))
             print(new_list)
     
     def do_update(self, arg):
