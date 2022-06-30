@@ -76,7 +76,7 @@ based on the class name and id
                 for key in info:
                     ar = key.split(".")
                     if array[1] == ar[1]:
-                        print(info.get("BaseModel.{}".format(ar[1])))
+                        print(info.get(f"BaseModel.{ar[1]}"))
                 if array[1] != ar[1]:
                     print("** no instance found **")
 
@@ -108,15 +108,23 @@ based on the class name and id
 
     def do_all(self, arg):
         """All command prints all string representation of all instances
+All command with a class prints the string representation of instances
+of this class
         """
         array = arg.split()
-        if len(array) < 1 or array[0] not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-        else:
-            new_list = []
-            dict_obj = storage.all()
+        new_list = []
+        dict_obj = storage.all()
+
+        if not arg:
             for key, value in dict_obj.items():
                 new_list.append(str(value))
+            print(new_list)
+        elif array[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+        else:
+            for key, value in dict_obj.items():
+                if value.__class__.__name__ == arg:
+                    new_list.append(str(value))
             print(new_list)
 
     def do_update(self, arg):
