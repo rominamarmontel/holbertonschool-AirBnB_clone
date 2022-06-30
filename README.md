@@ -137,6 +137,7 @@ All tests should also pass in non-interactive mode: $ echo "python3 -m unittest 
 
 
 ### Console : the command interpreter
+prompt : (hbnb)
 
 | COMMAND                                                |                 DESCRIPTION                  |
 |--------------------------------------------------------|----------------------------------------------|
