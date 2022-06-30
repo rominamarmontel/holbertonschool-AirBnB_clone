@@ -1,13 +1,19 @@
 #!/usr/bin/python3
 """
-    import module
+    import modules
 """
 import json
 from models.base_model import BaseModel
 import os
+from models.user import User
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.amenity import Amenity
 
 """
-    Filestorage class file
+    FileStorage class file
 """
 
 
@@ -34,7 +40,7 @@ class FileStorage:
 
     def save(self):
         """
-            serializes __objects to the JSON file 
+            serializes __objects to the JSON file
         """
         dict = {}
         for key, value in self.__objects.items():

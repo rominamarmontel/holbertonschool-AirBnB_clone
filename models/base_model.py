@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    import module
+    import modules
 """
 from datetime import datetime
 import uuid
@@ -14,16 +14,14 @@ import models
 
 class BaseModel:
     """
-        base class of the console
+        base class for an instance
     """
     def __init__(self, *args, **kwargs):
         """
-            initiate the id of an instance with the data time
+            initiate the id of an instance with the date time
             args:
-                id: the identification of the instance
-                created_at: the current datetime when an instance is created
-                updated_at: the current datetime when an instance is created
-                    and it will be updated when an object is changed
+                args: set of unnamed arguments
+                kwargs: the set of arguments named
         """
         if len(kwargs) != 0:
             for key, value in kwargs.items():
@@ -39,7 +37,7 @@ class BaseModel:
 
     def __str__(self):
         """
-            return a string with the information of the object
+            returns a string with the information of the object
         """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
