@@ -1,5 +1,6 @@
 # AirBnB_clone
 
+![hbnb_logo](https://user-images.githubusercontent.com/69083631/176741018-39fdad26-a09d-4b84-acb9-60a450571814.png)
 
 ## Concept
 
@@ -135,6 +136,8 @@ $
 ```
 All tests should also pass in non-interactive mode: $ echo "python3 -m unittest discover tests" | bash
 
+## STEP 1: The Console
+![flowchart_the_console](https://user-images.githubusercontent.com/69083631/176741298-c3505293-486d-4b5d-a31f-b120f9ee8ed3.png)
 
 ### Console : the command interpreter
 prompt : (hbnb)
