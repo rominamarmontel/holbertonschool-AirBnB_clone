@@ -155,10 +155,10 @@ All tests should also pass in non-interactive mode: $ echo "python3 -m unittest 
 | CLASSE                                                |                 Attributes                 |
 |--------------------------------------------------------|----------------------------------------------|
 | State                                                   | name                          |
-| City                                                    | state_id, name                   |
+| City                                                    | state_id<br>name                   |
 | Amenity                                   | name                                      |
-| Place                                                  | city_id, user_id, name, description, number_rooms, number_bathrooms, max_guest, price_by_night,latitude, longitude, amenity_ids             |
-| Review                                      | place_id, user_id, text           |
+| Place                                                  | city_id<br>user_id<br>name<br>description<br>number_rooms<br>number_bathrooms<br>max_guest<br> price_by_night<br>latitude<br>longitude<br>amenity_ids             |
+| Review                                      | place_id<br>user_id<br>text           |
 
 ## :couple: About us ##
 This is the first group project in Holberton Paris School in the 26 June 2022!!<br>
