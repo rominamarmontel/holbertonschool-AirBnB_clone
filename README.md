@@ -142,6 +142,7 @@ All tests should also pass in non-interactive mode: $ echo "python3 -m unittest 
 |--------------------------------------------------------|----------------------------------------------|
 | quit                                                   | To exit the console                          |
 | EOF                                                    | To exit the console by EOF                   |
+| Empty Line + ENTER                                     | Nothing                                      |
 | help                                                   | Display the help documentation.              |
 | create + class name                                        | Creates an object and print the ID           |
 | show + class name + id                                      | To show the informations of the object       |
