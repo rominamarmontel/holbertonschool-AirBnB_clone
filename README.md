@@ -150,7 +150,16 @@ All tests should also pass in non-interactive mode: $ echo "python3 -m unittest 
 | all + class name                                            | To show all the instances of a class         |
 | update + class name + id + attribute name + attribute value | To update the attribute of a class         |
 
- 
+### More Classes
+
+| CLASSE                                                |                 Attributes                 |
+|--------------------------------------------------------|----------------------------------------------|
+| State                                                   | name                          |
+| City                                                    | state_id, name                   |
+| Amenity                                   | name                                      |
+| Place                                                  | city_id, user_id, name, description, number_rooms, number_bathrooms, max_guest, price_by_night,latitude, longitude, amenity_ids             |
+| Review                                      | place_id, user_id, text           |
+
 ## :couple: About us ##
 This is the first group project in Holberton Paris School in the 26 June 2022!!<br>
 If you have a question or a comment, please contact us.<br>
