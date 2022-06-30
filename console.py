@@ -109,8 +109,6 @@ based on the class name and id
                 json.dump(list, f)
                 return
 
-
-
     def do_all(self, arg):
         """All command prints all string representation of all instances
 All command with a class prints the string representation of instances
