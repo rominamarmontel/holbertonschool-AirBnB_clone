@@ -3,10 +3,19 @@
 
 
 import unittest
+import pycodestyle
 from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
+    """
+        test for pycodestyle
+    """"
+
+    style = pycodestyle.StyleGuide(quiet=True)
+    result = style.check_files(['models/base_model.py'])
+    self.assertEqual(result.total_errors, 0)
+
     """
         test for BaseModel
     """
