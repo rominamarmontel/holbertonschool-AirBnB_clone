@@ -99,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all string representation of all instances"""
         array = arg.split()
-        if array[0] != "BaseModel":
+        if len(array) < 1 or array[0] != "BaseModel":
             print("** class doesn't exist **")
         else:
             new_list = []
