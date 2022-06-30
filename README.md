@@ -135,6 +135,20 @@ $
 ```
 All tests should also pass in non-interactive mode: $ echo "python3 -m unittest discover tests" | bash
 
+
+### Console : the command interpreter
+
+| COMMAND                                                |                 DESCRIPTION                  |
+|--------------------------------------------------------|:--------------------------------------------:|
+| quit                                                   | To exit the console                          |
+| EOF                                                    | To exit the console by EOF                   |
+| help                                                   | Display the help documentation.              |
+| create + class                                         | Creates an object and print the ID           |
+| show + class + id                                      | To show the informations of the object       |
+| destroy + class + id                                   | To delete an object                          |
+| all + class                                            | To show all the instances of a class         |
+| update + class + id + attribute name + "attribute value" | To update the attribute of a class         |
+
  
 ## :couple: About us ##
 This is the first group project in Holberton Paris School in the 26 June 2022!!<br>
@@ -142,3 +156,6 @@ If you have a question or a comment, please contact us.<br>
 Lucile DELEFORGE (4316@holbertonschool.com)<br>
 Juliette MESNILE (2550@holbertonschool.com)<br>
 Hiromi VARNIER (4336@holbertonschool.com)<br>
+
+
+ 
