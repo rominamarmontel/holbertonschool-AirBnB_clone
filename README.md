@@ -139,15 +139,15 @@ All tests should also pass in non-interactive mode: $ echo "python3 -m unittest 
 ### Console : the command interpreter
 
 | COMMAND                                                |                 DESCRIPTION                  |
-|--------------------------------------------------------|:--------------------------------------------:|
+|--------------------------------------------------------|----------------------------------------------|
 | quit                                                   | To exit the console                          |
 | EOF                                                    | To exit the console by EOF                   |
 | help                                                   | Display the help documentation.              |
-| create + class                                         | Creates an object and print the ID           |
-| show + class + id                                      | To show the informations of the object       |
-| destroy + class + id                                   | To delete an object                          |
-| all + class                                            | To show all the instances of a class         |
-| update + class + id + attribute name + "attribute value" | To update the attribute of a class         |
+| create + class name                                        | Creates an object and print the ID           |
+| show + class name + id                                      | To show the informations of the object       |
+| destroy + class name + id                                   | To delete an object                          |
+| all + class name                                            | To show all the instances of a class         |
+| update + class name + id + attribute name + attribute value | To update the attribute of a class         |
 
  
 ## :couple: About us ##
