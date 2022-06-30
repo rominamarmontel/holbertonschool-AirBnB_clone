@@ -10,11 +10,11 @@ from models.base_model import BaseModel
 class TestBaseModel(unittest.TestCase):
     """
         test for pycodestyle
-    """"
-
-    style = pycodestyle.StyleGuide(quiet=True)
-    result = style.check_files(['models/base_model.py'])
-    self.assertEqual(result.total_errors, 0)
+    """
+    def test_conformance_basemodel(self):
+        style = pycodestyle.StyleGuide(quiet=True)
+        result = style.check_files(['models/base_model.py'])
+        self.assertEqual(result.total_errors, 0)
 
     """
         test for BaseModel
@@ -60,29 +60,29 @@ class TestBaseModel(unittest.TestCase):
         b9 = BaseModel({"name": "Jay", "age": 20})
 
         self.assertNotEqual(b1.created_at, b2.created_at)
-        self.assertRegex(b1.created_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b1.created_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b3.created_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b3.created_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b4.created_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b4.created_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b5.created_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b5.created_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b6.created_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b6.created_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b7.created_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b7.created_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b8.created_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b8.created_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b9.created_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b9.created_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
 
     def test_updated_at(self):
@@ -98,29 +98,29 @@ class TestBaseModel(unittest.TestCase):
         b9 = BaseModel({"name": "Jay", "age": 20})
 
         self.assertNotEqual(b1.updated_at, b2.updated_at)
-        self.assertRegex(b1.updated_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b1.updated_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b3.updated_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b3.updated_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b4.updated_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b4.updated_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b5.updated_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b5.updated_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b6.updated_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b6.updated_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b7.updated_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b7.updated_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b8.updated_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b8.updated_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b9.updated_at,
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:\
+        self.assertRegex(b9.updated_at.isoformat(),
+                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
 [0-9]{2}:[0-9]{2}.[0-9]*")
 
     def test_str(self):
