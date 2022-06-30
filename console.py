@@ -55,9 +55,9 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
-            self = BaseModel()
-            BaseModel.save(self)
-            print(self.id)
+            new_obj = eval(arg)()
+            new_obj.save()
+            print(new_obj.id)
 
     def do_show(self, arg):
         """Show command prints the string representation of an instance
