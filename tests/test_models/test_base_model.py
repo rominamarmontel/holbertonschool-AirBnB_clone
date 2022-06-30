@@ -95,16 +95,47 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         """Test the __str__ method"""
         b1 = BaseModel()
+        b2 = BaseModel(None)
+        b3 = BaseModel("name")
+        b4 = BaseModel(3)
+        b5 = BaseModel(2.5)
+        b6 = BaseModel(float('inf'))
+        
         correct_str = f"[BaseModel] ({b1.id}) {b1.__dict__}"
+        correct_str = f"[BaseModel] ({b2.id}) {b2.__dict__}"
+        correct_str = f"[BaseModel] ({b3.id}) {b3.__dict__}"
+        correct_str = f"[BaseModel] ({b4.id}) {b4.__dict__}"
+        correct_str = f"[BaseModel] ({b5.id}) {b5.__dict__}"
+        correct_str = f"[BaseModel] ({b6.id}) {b6.__dict__}"
         
         self.assertEqual(correct_str, str(b1))
+        self.assertEqual(correct_str, str(b2))
+        self.assertEqual(correct_str, str(b3))
+        self.assertEqual(correct_str, str(b4))
+        self.assertEqual(correct_str, str(b5))
+        self.assertEqual(correct_str, str(b6))
 
     def test_save(self):
         """Test __save__ method"""
         b1 = BaseModel()
         b1.save()
+        b2 = BaseModel(None)
+        b2.save()
+        b3 = BaseModel("name")
+        b3.save()
+        b4 = BaseModel(3)
+        b4.save()
+        b5 = BaseModel(2.5)
+        b5.save()
+        b6 = BaseModel(float('inf'))
+        b6.save()
         
         self.assertNotEqual(b1.created_at, b1.updated_at)
+        self.assertNotEqual(b2.created_at, b2.updated_at)
+        self.assertNotEqual(b3.created_at, b3.updated_at)
+        self.assertNotEqual(b4.created_at, b4.updated_at)
+        self.assertNotEqual(b5.created_at, b5.updated_at)
+        self.assertNotEqual(b6.created_at, b6.updated_at)
 
     def test_to_dict(self):
         """Test to_dict method"""
