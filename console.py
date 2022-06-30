@@ -64,6 +64,9 @@ class HBNBCommand(cmd.Cmd):
 based on the class name and id
         """
         array = arg.split()
+        new_list = []
+        dict_obj = storage.all()
+
         if len(array) < 1:
             print("** class name missing **")
         elif array[0] not in HBNBCommand.classes:
@@ -71,14 +74,14 @@ based on the class name and id
         elif len(array) < 2:
             print("** instance id missing **")
         else:
-            with open('file.json', 'r', encoding="utf-8") as fd:
-                info = json.load(fd)
-                for key in info:
-                    ar = key.split(".")
-                    if array[1] == ar[1]:
-                        print(info.get(f"BaseModel.{ar[1]}"))
-                if array[1] != ar[1]:
-                    print("** no instance found **")
+            for key, value in dict_obj.items():
+                if value.__class__.__name__ == array[0]:
+                    new_list.append(value)
+            for instance in new_list:
+                if instance.id == array[1]:
+                    print(instance)
+                    return
+            print("** no instance found **")
 
     def do_destroy(self, arg):
         """Destroy command deletes an instance based on the class name and id
@@ -91,20 +94,22 @@ based on the class name and id
         elif len(array) < 2:
             print("** instance id missing **")
         else:
+            new_list = ""
             with open("file.json", "r", encoding="utf-8") as flj:
                 list = json.load(flj)
                 for key in list:
                     ar = key.split(".")
                     if array[1] == ar[1]:
-                        new_list = "BaseModel.{}".format(ar[1])
-
-                if array[1] != ar[1]:
+                        new_list = f"{array[0]}.{ar[1]}"
+                if len(new_list) < 1:
                     print("** no instance found **")
                     return
-
-            list.pop(new_list)
+                list.pop(new_list)
             with open("file.json", 'w', encoding="utf-8") as f:
                 json.dump(list, f)
+                return
+
+
 
     def do_all(self, arg):
         """All command prints all string representation of all instances
@@ -154,7 +159,7 @@ of this class
                             print("** value missing **")
                             return
                         else:
-                            new_key = f"BaseModel.{ar[1]}"
+                            new_key = f"{array[0]}.{ar[1]}"
                 if len(new_key) < 1:
                     print("** no instance found **")
                     return
