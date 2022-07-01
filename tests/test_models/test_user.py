@@ -58,8 +58,8 @@ class TestUser(unittest.TestCase):
         self.assertEqual(type(self.user1.password), str)
         self.assertEqual(type(self.user1.first_name), str)
         self.assertEqual(type(self.user1.last_name), str)
-        self.assertEqual(type(self.user1.created_at), datetime.datetime)
-        self.assertEqual(type(self.user1.updated_at), datetime.datetime)
+        self.assertEqual(type(self.user1.created_at), datetime)
+        self.assertEqual(type(self.user1.updated_at), datetime)
 
     def test_str(self):
         """test __str__method"""
