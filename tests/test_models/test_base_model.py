@@ -134,23 +134,24 @@ class TestBaseModel(unittest.TestCase):
         b7 = BaseModel([1, 2, 3])
         b8 = BaseModel({"name": "Jay", "age": 20})
         
-        correct_str = f"[BaseModel] ({b1.id}) {b1.__dict__}"
-        correct_str = f"[BaseModel] ({b2.id}) {b2.__dict__}"
-        correct_str = f"[BaseModel] ({b3.id}) {b3.__dict__}"
-        correct_str = f"[BaseModel] ({b4.id}) {b4.__dict__}"
-        correct_str = f"[BaseModel] ({b5.id}) {b5.__dict__}"
-        correct_str = f"[BaseModel] ({b6.id}) {b6.__dict__}"
-        correct_str = f"[BaseModel] ({b7.id}) {b5.__dict__}"
-        correct_str = f"[BaseModel] ({b8.id}) {b6.__dict__}"
-        
-        self.assertEqual(correct_str, str(b1))
-        self.assertEqual(correct_str, str(b2))
-        self.assertEqual(correct_str, str(b3))
-        self.assertEqual(correct_str, str(b4))
-        self.assertEqual(correct_str, str(b5))
-        self.assertEqual(correct_str, str(b6))
-        self.assertEqual(correct_str, str(b7))
-        self.assertEqual(correct_str, str(b8))
+        self.assertEqual(str(b1), f"[{b1.__class__.__name__}] ({b1.id}) " +
+                         f"{b1.__dict__}")
+        self.assertEqual(str(b2), f"[{b2.__class__.__name__}] ({b2.id}) " +
+                         f"{b2.__dict__}")
+        self.assertEqual(str(b3), f"[{b3.__class__.__name__}] ({b3.id}) " +
+                         f"{b3.__dict__}")
+        self.assertEqual(str(b3), f"[{b3.__class__.__name__}] ({b3.id}) " +
+                         f"{b3.__dict__}")
+        self.assertEqual(str(b4), f"[{b4.__class__.__name__}] ({b4.id}) " +
+                         f"{b4.__dict__}")
+        self.assertEqual(str(b5), f"[{b5.__class__.__name__}] ({b5.id}) " +
+                         f"{b5.__dict__}")
+        self.assertEqual(str(b6), f"[{b6.__class__.__name__}] ({b6.id}) " +
+                         f"{b6.__dict__}")
+        self.assertEqual(str(b7), f"[{b7.__class__.__name__}] ({b7.id}) " +
+                         f"{b7.__dict__}")
+        self.assertEqual(str(b8), f"[{b8.__class__.__name__}] ({b8.id}) " +
+                         f"{b8.__dict__}")
 
     def test_save(self):
         """Test __save__ method"""
