@@ -3,9 +3,7 @@
     import modules
 """
 import cmd
-import encodings
 import sys
-from sys import argv
 from models.base_model import BaseModel
 import models
 from models.engine.file_storage import FileStorage
@@ -165,6 +163,48 @@ of this class
         list[new_key].update({f"{array[2]}": f"{array[3]}"})
         with open("file.json", 'w', encoding="utf-8") as f:
             json.dump(list, f)
+
+    def do_count(self, arg):
+        """
+        Count the number of instances of a class
+        """
+        new_arg = arg.split(".")
+        with open("file.json", "r", encoding="utf-8") as f:
+            dict = json.load(f)
+            count = 0
+            all_key = dict.keys()
+            for element in all_key:
+                new_key = element.split(".")
+                if new_key[0] == new_arg[0]:
+                    count += 1
+        print(count)
+
+    def default(self, arg):
+        """
+        Update a command interpreter by default
+        """
+        array = arg.split(".")
+        if array[0] in HBNBCommand.classes:
+            if array[1] == "all()":
+                return self.do_all(array[0])
+            if array[1] == "count()":
+                return self.do_count(array[0])
+            if array[1][0:4] == "show":
+                new_array = array[1].split("(")
+                new_new_array = new_array[1].split(")")
+                new_arg = array[0] + " " + new_new_array[0]
+                return self.do_show(new_arg)
+            if array[1][0:7] == "destroy":
+                new_array = array[1].split("(")
+                new_new_array = new_array[1].split(")")
+                new_arg = array[0] + " " + new_new_array[0]
+                return self.do_destroy(new_arg)
+            if array[1][0:6] == "update":
+                new_array = array[1].split("(")
+                new_new_array = new_array[1].split(")")
+                ar = new_new_array[0].split(",")
+                new_arg = array[0] + " " + ar[0] + " " + ar[1] + " " + ar[2]
+                return self.do_update(new_arg)
 
 
 if __name__ == '__main__':
