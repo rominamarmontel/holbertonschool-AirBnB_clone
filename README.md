@@ -153,6 +153,11 @@ prompt : (hbnb)
 | destroy + class name + id                                   | To delete an object                          |
 | all + class name                                            | To show all the instances of a class         |
 | update + class name + id + attribute name + attribute value | To update the attribute of a class         |
+| class name + "." + all | To show all the instances of a class         |
+| class name + "." + count | To count number of the instances of a class        |
+| class name + "." + show + id | To show the informations of the object        |
+| class name + "." + destroy + id | To delete an object        |
+| class name + "." + update + id + attribute name + attribute value | To update an instance based on his ID |
 
 ### More Classes
 
