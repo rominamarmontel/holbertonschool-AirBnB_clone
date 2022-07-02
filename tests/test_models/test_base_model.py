@@ -12,13 +12,11 @@ class TestBaseModel(unittest.TestCase):
         test for pycodestyle
     """
     def test_conformance_basemodel(self):
+        """test for BaseModel"""
         style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['models/base_model.py'])
         self.assertEqual(result.total_errors, 0)
 
-    """
-        test for BaseModel
-    """
     def test_id(self):
         """Test attribute id"""
         b1 = BaseModel()
