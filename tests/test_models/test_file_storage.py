@@ -51,5 +51,6 @@ class TestFileStorage(unittest.TestCase):
         list = json.loads(jsontype)
         self.assertTrue(type(list) is dict)
 
+
 if __name__ == '__main__':
     unittest.main()

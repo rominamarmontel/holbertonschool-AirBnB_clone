@@ -3,7 +3,7 @@
 
 import unittest
 import pycodestyle
-from console import  HBNBCommand
+from console import HBNBCommand
 from models.base_model import BaseModel
 from datetime import datetime
 import console
@@ -36,7 +36,7 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_destroy(self, arg):
 
     def test_do_all(self, arg):
-    
+
     def test_do_update(self, arg):
 
     def test_do_count(self, arg):

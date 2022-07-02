@@ -133,7 +133,7 @@ class TestBaseModel(unittest.TestCase):
         b6 = BaseModel(float('inf'))
         b7 = BaseModel([1, 2, 3])
         b8 = BaseModel({"name": "Jay", "age": 20})
-        
+
         self.assertEqual(str(b1), f"[{b1.__class__.__name__}] ({b1.id}) " +
                          f"{b1.__dict__}")
         self.assertEqual(str(b2), f"[{b2.__class__.__name__}] ({b2.id}) " +
@@ -171,7 +171,7 @@ class TestBaseModel(unittest.TestCase):
         b7.save()
         b8 = BaseModel({"name": "Jay", "age": 20})
         b8.save()
-        
+
         self.assertNotEqual(b1.created_at, b1.updated_at)
         self.assertNotEqual(b2.created_at, b2.updated_at)
         self.assertNotEqual(b3.created_at, b3.updated_at)

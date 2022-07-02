@@ -8,7 +8,6 @@ from models.base_model import BaseModel
 from datetime import datetime
 
 
-
 class TestUser(unittest.TestCase):
     """ tests for class functions and attributes """
 
