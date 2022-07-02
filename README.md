@@ -160,7 +160,21 @@ prompt : (hbnb)
 | class name + "." + update + id + attribute name + attribute value | To update an instance based on his ID |
 
 ### Some examples of the command interpreter
-![image](https://user-images.githubusercontent.com/98317357/177001285-b13c9a6f-98c1-426b-9a1e-af3526d6f721.png)
+show:
+![image](https://user-images.githubusercontent.com/98317357/177001366-bf3efca3-0a7e-4721-9b30-dd59797806d6.png)
+
+destroy:
+![image](https://user-images.githubusercontent.com/98317357/177001454-ce5114c3-29e2-4cf5-b5b9-735eca47150d.png)
+
+all:
+![image](https://user-images.githubusercontent.com/98317357/177001493-71ef1108-9b1d-4d09-914f-5c5bed5fb868.png)
+
+city:
+![image](https://user-images.githubusercontent.com/98317357/177001612-735440c2-ab0a-4919-ba91-f7e68736a76d.png)
+
+count:
+![image](https://user-images.githubusercontent.com/98317357/177001679-e97a4217-2b91-455f-931f-3be2ad6c5bc8.png)
+
 
 
 ### More Classes
