@@ -175,6 +175,3 @@ If you have a question or a comment, please contact us.<br>
 Lucile DELEFORGE (4316@holbertonschool.com)<br>
 Juliette MESNILE (2550@holbertonschool.com)<br>
 Hiromi VARNIER (4336@holbertonschool.com)<br>
-
-
- 
