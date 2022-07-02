@@ -62,8 +62,6 @@ class HBNBCommand(cmd.Cmd):
 based on the class name and id
         """
         array = arg.split()
-        new_list = []
-        dict_obj = storage.all()
 
         if len(array) < 1:
             print("** class name missing **")
@@ -72,14 +70,12 @@ based on the class name and id
         elif len(array) < 2:
             print("** instance id missing **")
         else:
-            for key, value in dict_obj.items():
-                if value.__class__.__name__ == array[0]:
-                    new_list.append(value)
-            for instance in new_list:
-                if instance.id == array[1]:
-                    print(instance)
-                    return
-            print("** no instance found **")
+            new_dict = storage.all()
+            new_str = f"{array[0]}.{array[1]}"
+            if new_str not in new_dict.keys():
+                print("** no instance found **")
+            else:
+                print(new_dict[new_str])
 
     def do_destroy(self, arg):
         """Destroy command deletes an instance based on the class name and id
@@ -92,27 +88,19 @@ based on the class name and id
         elif len(array) < 2:
             print("** instance id missing **")
         else:
-            new_list = ""
-            with open("file.json", "r", encoding="utf-8") as flj:
-                list = json.load(flj)
-                for key in list:
-                    ar = key.split(".")
-                    if array[1] == ar[1]:
-                        new_list = f"{array[0]}.{ar[1]}"
-                if len(new_list) < 1:
-                    print("** no instance found **")
-                    return
-                list.pop(new_list)
-            with open("file.json", 'w', encoding="utf-8") as f:
-                json.dump(list, f)
-                return
+            new_dict = storage.all()
+            new_str = f"{array[0]}.{array[1]}"
+            if new_str not in new_dict.keys():
+                print("** no instance found **")
+            else:
+                del(new_dict[new_str])
+                storage.save()
 
     def do_all(self, arg):
         """All command prints all string representation of all instances
 All command with a class prints the string representation of instances
 of this class
         """
-        array = arg.split()
         new_list = []
         dict_obj = storage.all()
 
@@ -120,7 +108,7 @@ of this class
             for key, value in dict_obj.items():
                 new_list.append(str(value))
             print(new_list)
-        elif array[0] not in HBNBCommand.classes:
+        elif arg not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
             for key, value in dict_obj.items():
@@ -141,28 +129,20 @@ of this class
         elif len(array) < 2:
             print("** instance id missing **")
             return
-        elif len(array) >= 2:
-            with open("file.json", "r", encoding="utf-8") as flj:
-                list = json.load(flj)
-                new_key = ""
-                for key in list:
-                    ar = key.split(".")
-                    if array[1] == ar[1]:
-                        if len(array) < 3:
-                            print("** attribute name missing **")
-                            return
-                        elif len(array) < 4:
-                            print("** value missing **")
-                            return
-                        else:
-                            new_key = f"{array[0]}.{ar[1]}"
-                if len(new_key) < 1:
-                    print("** no instance found **")
-                    return
-
-        list[new_key].update({f"{array[2]}": f"{array[3]}"})
-        with open("file.json", 'w', encoding="utf-8") as f:
-            json.dump(list, f)
+        else:
+            new_dict = storage.all()
+            new_str = f"{array[0]}.{array[1]}"
+            if new_str not in new_dict.keys():
+                print("** no instance found **")
+            elif len(array) < 3:
+                print("** attribute name missing **")
+                return
+            elif len(array) < 4:
+                print("** value missing **")
+                return
+            else:
+                setattr(new_dict[new_str], array[2], array[3])
+                storage.save()
 
     def do_count(self, arg):
         """
