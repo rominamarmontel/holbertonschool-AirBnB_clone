@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Unittest module for State"""
-from re import S
 from models.base_model import BaseModel
 from models.state import State
 import unittest
@@ -11,19 +10,19 @@ class TestState(unittest.TestCase):
 
     def test_init(self):
         """test the creation of an instance"""
-        s = State()
-        self.assertEqual(s.name, '')
-        s.name = 'Houssem'
-        self.assertEqual(s.name, 'Houssem')
-        self.assertTrue(hasattr(s, 'id'))
-        self.assertTrue(hasattr(s, 'created_at'))
-        self.assertTrue(hasattr(s, 'updated_at'))
-        self.assertTrue(issubclass(s.__class__, BaseModel))
+        a = State()
+        self.assertEqual(a.name, '')
+        a.name = 'Houssem'
+        self.assertEqual(a.name, 'Houssem')
+        self.assertTrue(hasattr(a, 'id'))
+        self.assertTrue(hasattr(a, 'created_at'))
+        self.assertTrue(hasattr(a, 'updated_at'))
+        self.assertTrue(issubclass(a.__class__, BaseModel))
 
     def test_str(self):
         """Test the string output of the class"""
-        s = State()
-        self.assertEqual(str(s), f"[State] ({s.id}) {s.__dict__}")
+        a = State()
+        self.assertEqual(str(a), f"[State] ({a.id}) {a.__dict__}")
 
 
 if __name__ == '__main__':
