@@ -159,6 +159,10 @@ prompt : (hbnb)
 | class name + "." + destroy + id | To delete an object        |
 | class name + "." + update + id + attribute name + attribute value | To update an instance based on his ID |
 
+### Some examples of the command interpreter
+![image](https://user-images.githubusercontent.com/98317357/177001285-b13c9a6f-98c1-426b-9a1e-af3526d6f721.png)
+
+
 ### More Classes
 
 | CLASSE                                                |                 Attributes                 |
