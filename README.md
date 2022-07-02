@@ -159,6 +159,11 @@ prompt : (hbnb)
 | class name + "." + destroy + id | To delete an object        |
 | class name + "." + update + id + attribute name + attribute value | To update an instance based on his ID |
 
+### Some examples of the command interpreter
+(hbnb) show BaseModel 40ebcb7d-1b53-4e8c-a702-8e81cdef4072
+[BaseModel] (40ebcb7d-1b53-4e8c-a702-8e81cdef4072) {'id': '40ebcb7d-1b53-4e8c-a702-8e81cdef4072', 'created_at': datetime.datetime(2022, 7, 2, 10, 28, 46, 998712), 'updated_at': datetime.datetime(2022, 7, 2, 10, 28, 46, 998721), 'name': 'My_First_Model', 'my_number': 89, 'age': '12'}
+(hbnb) 
+
 ### More Classes
 
 | CLASSE                                                |                 Attributes                 |
