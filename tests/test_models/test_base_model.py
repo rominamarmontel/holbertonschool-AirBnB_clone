@@ -1,190 +1,187 @@
 #!/usr/bin/python3
-""" Unittest for class BaseModel """
 
+"""
+    Unittests for BaseModel
+"""
 
 import unittest
+import os
 import pycodestyle
 from models.base_model import BaseModel
+from datetime import datetime
+from uuid import uuid4
+
+class Test_BaseModel_Init(unittest.TestCase):
+    """test the __init__"""
+
+    def test_id_none(self):
+        """Test id is not None"""
+        base = BaseModel()
+        self.assertIsNot(base.id, None)
+
+    def test_class(self):
+        """test the class name"""
+        base = BaseModel()
+        self.assertEqual(base.__class__.__name__, "BaseModel")
+
+    def test_id_type(self):
+        """test id str"""
+        base = BaseModel()
+        self.assertIsInstance(base.id, str)
+
+    def test_id_unique(self):
+        """test unique id"""
+        base1 = BaseModel()
+        base2 = BaseModel()
+        self.assertNotEqual(base1.id, base2.id)
+
+    def test_id_length(self):
+        """test the lenght id"""
+        base = BaseModel()
+        self.assertEqual(len(base.id), 36)
+
+    def test_create_at_type(self):
+        """test created_at type"""
+        base = BaseModel()
+        self.assertEqual(type(base.created_at), datetime)
+
+    def test_unique_created_at(self):
+        """test created_at modif"""
+        base1 = BaseModel()
+        base2 = BaseModel()
+        self.assertNotEqual(base1.created_at, base2.created_at)
+
+    def test_update_at_type(self):
+        """test updated_at type"""
+        base = BaseModel()
+        self.assertEqual(type(base.updated_at), datetime)
+
+    def test_created_at_updated(self):
+        """test updated_at modif"""
+        base1 = BaseModel()
+        base2 = BaseModel()
+        self.assertNotEqual(base1.created_at, base2.updated_at)
+
+    def test_different_updated_at(self):
+        """test if updated_at change each time executed"""
+        base1 = BaseModel()
+        base2 = BaseModel()
+        self.assertNotEqual(base1.updated_at, base2.updated_at)
+
+    def test_created_at_format(self):
+        """Test created at regex"""
+        base = BaseModel()
+        self.assertRegex(str(base.created_at), '^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{6}')
+
+    def test_update_at_format(self):
+        """Test updated_at regex"""
+        base = BaseModel()
+        self.assertRegex(str(base.updated_at), '^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{6}')
+
+    def test_kwargs(self):
+        """test kwargs"""
+        base = BaseModel()
+        dict_a = base.to_dict()
+        base2 = BaseModel(**dict_a)
+        self.assertEqual(base.id, base2.id)
+
+    def test_kwargs_datetime(self):
+        """test kwargs datetime"""
+        base = BaseModel()
+        dict_a = base.to_dict()
+        base2 = BaseModel(**dict_a)
+        self.assertRegex(str(base2.updated_at), '^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{6}')
+
+    def test_kwargs_class(self):
+        """test kwargs class"""
+        base = BaseModel()
+        dict_a = base.to_dict()
+        base2 = BaseModel(**dict_a)
+        self.assertTrue(hasattr(base2, '__class__'))
 
 
-class TestBaseModel(unittest.TestCase):
-    """
-        test for pycodestyle
-    """
-    def test_conformance_basemodel(self):
-        """test for BaseModel"""
-        style = pycodestyle.StyleGuide(quiet=True)
-        result = style.check_files(['models/base_model.py'])
-        self.assertEqual(result.total_errors, 0)
+class Test_BaseModel_Str(unittest.TestCase):
+    """test the str method"""
 
-    def test_id(self):
-        """Test attribute id"""
-        b1 = BaseModel()
-        b2 = BaseModel(None)
-        b3 = BaseModel("name")
-        b4 = BaseModel(3)
-        b5 = BaseModel(2.5)
-        b6 = BaseModel(float('inf'))
-        b7 = BaseModel([1, 2, 3])
-        b8 = BaseModel({"name": "Jay", "age": 20})
+    def test_representation_class_name_and_id(self):
+        """test str representation"""
+        base = BaseModel()
+        base.id = 123
+        self.assertTrue("[BaseModel] (123)", base.__str__)
 
-        self.assertRegex(b1.id,
-                         "[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*")
-        self.assertRegex(b2.id,
-                         "[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*")
-        self.assertRegex(b3.id,
-                         "[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*")
-        self.assertRegex(b4.id,
-                         "[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*")
-        self.assertRegex(b5.id,
-                         "[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*")
-        self.assertRegex(b6.id,
-                         "[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*")
-        self.assertRegex(b7.id,
-                         "[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*")
-        self.assertRegex(b8.id,
-                         "[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*-[0-9a-z]*")
+    def test_representation_updated_at(self):
+        """test update_at"""
+        base = BaseModel()
+        self.assertTrue('updated_at' in str(base), True)
 
-    def test_created_at(self):
-        """Test attribute created_at"""
-        b1 = BaseModel()
-        b2 = BaseModel()
-        b3 = BaseModel(None)
-        b4 = BaseModel(3)
-        b5 = BaseModel(3.2)
-        b6 = BaseModel("John")
-        b7 = BaseModel(float('inf'))
-        b8 = BaseModel([1, 2, 3])
-        b9 = BaseModel({"name": "Jay", "age": 20})
+    def test_representation_created_at(self):
+        """test created_at"""
+        base = BaseModel()
+        self.assertTrue('created_at' in str(base), True)
 
-        self.assertNotEqual(b1.created_at, b2.created_at)
-        self.assertRegex(b1.created_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b3.created_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b4.created_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b5.created_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b6.created_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b7.created_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b8.created_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b9.created_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
 
-    def test_updated_at(self):
-        """Test attribute updated_at"""
-        b1 = BaseModel()
-        b2 = BaseModel()
-        b3 = BaseModel(None)
-        b4 = BaseModel(3)
-        b5 = BaseModel(3.2)
-        b6 = BaseModel("Lucile")
-        b7 = BaseModel(float('inf'))
-        b8 = BaseModel([1, 2, 3])
-        b9 = BaseModel({"name": "Jay", "age": 20})
 
-        self.assertNotEqual(b1.updated_at, b2.updated_at)
-        self.assertRegex(b1.updated_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b3.updated_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b4.updated_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b5.updated_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b6.updated_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b7.updated_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b8.updated_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
-        self.assertRegex(b9.updated_at.isoformat(),
-                         "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:\
-[0-9]{2}:[0-9]{2}.[0-9]*")
+class Test_BaseModel_Save(unittest.TestCase):
+    """test the save method"""
 
-    def test_str(self):
-        """Test the __str__ method"""
-        b1 = BaseModel()
-        b2 = BaseModel(None)
-        b3 = BaseModel("name")
-        b4 = BaseModel(3)
-        b5 = BaseModel(2.5)
-        b6 = BaseModel(float('inf'))
-        b7 = BaseModel([1, 2, 3])
-        b8 = BaseModel({"name": "Jay", "age": 20})
+    def test_name_base_model(self):
+        """test save method with new str"""
+        obj = BaseModel()
+        obj.name = "Houssem"
+        obj.save()
+        self.assertEqual(obj.name, "Houssem")
 
-        self.assertEqual(str(b1), f"[{b1.__class__.__name__}] ({b1.id}) " +
-                         f"{b1.__dict__}")
-        self.assertEqual(str(b2), f"[{b2.__class__.__name__}] ({b2.id}) " +
-                         f"{b2.__dict__}")
-        self.assertEqual(str(b3), f"[{b3.__class__.__name__}] ({b3.id}) " +
-                         f"{b3.__dict__}")
-        self.assertEqual(str(b3), f"[{b3.__class__.__name__}] ({b3.id}) " +
-                         f"{b3.__dict__}")
-        self.assertEqual(str(b4), f"[{b4.__class__.__name__}] ({b4.id}) " +
-                         f"{b4.__dict__}")
-        self.assertEqual(str(b5), f"[{b5.__class__.__name__}] ({b5.id}) " +
-                         f"{b5.__dict__}")
-        self.assertEqual(str(b6), f"[{b6.__class__.__name__}] ({b6.id}) " +
-                         f"{b6.__dict__}")
-        self.assertEqual(str(b7), f"[{b7.__class__.__name__}] ({b7.id}) " +
-                         f"{b7.__dict__}")
-        self.assertEqual(str(b8), f"[{b8.__class__.__name__}] ({b8.id}) " +
-                         f"{b8.__dict__}")
+    def test_my_number_base_model(self):
+        """test save method with new int"""
+        obj = BaseModel()
+        obj.num = 1234
+        obj.save()
+        self.assertEqual(obj.num, 1234)
 
-    def test_save(self):
-        """Test __save__ method"""
-        b1 = BaseModel()
-        b1.save()
-        b2 = BaseModel(None)
-        b2.save()
-        b3 = BaseModel("name")
-        b3.save()
-        b4 = BaseModel(3)
-        b4.save()
-        b5 = BaseModel(2.5)
-        b5.save()
-        b6 = BaseModel(float('inf'))
-        b6.save()
-        b7 = BaseModel([1, 2, 3])
-        b7.save()
-        b8 = BaseModel({"name": "Jay", "age": 20})
-        b8.save()
+    def test_save_update(self):
+        """test update saved"""
+        obj = BaseModel()
+        obj.num = 1
+        date1 = obj.updated_at
+        obj.save()
+        obj.num = 2
+        date2 = obj.updated_at
+        obj.save()
+        self.assertNotEqual(date1, date2)
 
-        self.assertNotEqual(b1.created_at, b1.updated_at)
-        self.assertNotEqual(b2.created_at, b2.updated_at)
-        self.assertNotEqual(b3.created_at, b3.updated_at)
-        self.assertNotEqual(b4.created_at, b4.updated_at)
-        self.assertNotEqual(b5.created_at, b5.updated_at)
-        self.assertNotEqual(b6.created_at, b6.updated_at)
-        self.assertNotEqual(b5.created_at, b7.updated_at)
-        self.assertNotEqual(b6.created_at, b8.updated_at)
+    def test_save_updates_file(self):
+        """test the information are really saved in the file"""
+        base = BaseModel()
+        base.save()
+        with open("file.json", "r", encoding="utf-8") as f:
+            self.assertIn("BaseModel." + base.id, f.read())
 
-    def test_to_dict(self):
-        """Test to_dict method"""
-        b1 = BaseModel()
-        b2 = b1.to_dict()
 
-        self.assertEqual(b1.id, b2['id'])
+class Test_BaseModel_To_Dict(unittest.TestCase):
+    """test the to_dict method"""
+
+    def test_dictionary_return(self):
+        """test the to_dict method"""
+        base = BaseModel()
+        my_dict = base.to_dict()
+        self.assertEqual(type(my_dict), dict)
+
+    def test_create_dictionary(self):
+        """test to_dict"""
+        base = BaseModel()
+        self.assertEqual(type(base.__dict__), dict)
+
+    def test_compare_dictionary_type(self):
+        """test dictionary egal __dict__"""
+        base = BaseModel()
+        self.assertEqual(type(base.__dict__), type(base.to_dict()))
+
+    def test_correct_keys(self):
+        base = BaseModel()
+        self.assertIn("id", base.to_dict())
+        self.assertIn("created_at", base.to_dict())
+        self.assertIn("updated_at", base.to_dict())
+        self.assertIn("__class__", base.to_dict())
 
 
 if __name__ == '__main__':
