@@ -7,11 +7,6 @@ import uuid
 import models
 
 
-"""
-    Base class file
-"""
-
-
 class BaseModel:
     """
         base class for an instance
