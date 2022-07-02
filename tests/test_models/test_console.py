@@ -21,28 +21,6 @@ class TestHBNBCommand(unittest.TestCase):
         """test the prompt format"""
         self.assertEqual(HBNBCommand.prompt, "(hbnb) ")
 
-    """def test_do_quit(self, arg):
-        tests for quit
-        self.assertEqual("quit()", "")"""
-
-    """def test_do_EOF(self, arg):
-
-    def test_emptyline(self):
-
-    def test_do_create(self, arg):
-
-    def test_do_show(self, arg):
-
-    def test_do_destroy(self, arg):
-
-    def test_do_all(self, arg):
-
-    def test_do_update(self, arg):
-
-    def test_do_count(self, arg):
-
-    def test_default(self, arg):"""
-
 
 if __name__ == '__main__':
     unittest.main()
