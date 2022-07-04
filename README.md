@@ -97,7 +97,7 @@ Deserialization
 First, we create a directory and give it a package name, preferably related to its operation. Then we put the classes and the required functions in it. Finally we create an `__init__.py` file inside the directory, to let Python know that the directory is a package.
 
 * __How to create a command interpreter in Python using the `cmd` module ?__
-
+```
 1. import cmd
 2. create class HBNBCommand(cmd.Cmd)
 3. set the prompt as "(hbnb) "
@@ -105,11 +105,12 @@ First, we create a directory and give it a package name, preferably related to i
 5. At the end of file,<br>
 if __name__ == '__main__':<br>
     HBNBCommand().cmdloop()
-
+```
 * __What is Unit testing and how to implement it in a large project ?__
+```
 1. to use the unittest module
 2. import unittest
-
+```
 * __How to serialize and deserialize a Class ?__
 
 What is serialize and deserialize a Class?
