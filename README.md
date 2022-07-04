@@ -3,6 +3,59 @@
 ![hbnb_logo](https://user-images.githubusercontent.com/69083631/176741018-39fdad26-a09d-4b84-acb9-60a450571814.png)
 
 ## Concept
+```
+- create your data model
+- manage (create, update, destroy, etc) objects via a console / command interpreter
+- store and persist objects to a file (JSON file)
+
+```
+File and Difrectories
+```
+- models directory will contain all classes used for the entire project. A class, called “model” in a OOP project is the representation of an object/instance.
+- tests directory will contain all unit tests.
+- console.py file is the entry point of our command interpreter.
+- models/base_model.py file is the base class of all our models. It contains common elements:
+- attributes: id, created_at and updated_at
+- methods: save() and to_json()
+- models/engine directory will contain all storage classes (using the same prototype). For the moment you will have only one: file_storage.py.
+```
+### Storage
+```
+- How can I store my instances?
+class Student():
+    def __init__(self, name):
+        self.name = name
+
+students = []
+s = Student("John")
+students.append(s)
+```
+Here, I’m creating a student and store it in a list. But after this program execution, my Student instance doesn’t exist anymore
+```
+class Student():
+    def __init__(self, name):
+        self.name = name
+
+students = reload() # recreate the list of Student objects from a file
+s = Student("John")
+students.append(s)
+save(students) # save all Student objects to a file
+```
+### File storage == JSON serialization
+
+Serialization
+```
+1. my_instance.to_json() : to retrieve a dictionary
+2. Convert an instance to Python built in serializable data structure (list, dict, number and string) 
+3. my_string = JSON.dumps(my_dict): write this string to a file on disk
+4. convert this data structure to a string (JSON format, but it can be YAML, XML, CSV…)
+```
+Deserialization
+```
+1. Read a string from a file on disk
+2. Convert this string to a data structure using with my_dict = JSON.loads(my_string)
+3. Convert this data structure to instance using with my_instance = MyObject(my_dict)
+```
 
 * A command interpreter to manipulate data without a visual interface, like in a Shell (perfect for development and debugging)
 * A website (the front-end) that shows the final product to everybody: static and dynamic
@@ -54,18 +107,119 @@ if __name__ == '__main__':<br>
     HBNBCommand().cmdloop()
 
 * __What is Unit testing and how to implement it in a large project ?__
+1. to use the unittest module
+2. import unittest
 
 * __How to serialize and deserialize a Class ?__
 
+What is serialize and deserialize a Class?
+```
+<class 'BaseModel'> -> to_dict() -> <class 'dict'> -> <class 'BaseModel'>
+```
+the flow of serialization-deserialization will be:
+```
+<class 'BaseModel'> -> to_dict() -> <class 'dict'> -> JSON dump -> <class 'str'> -> FILE -> <class 'str'> -> JSON load -> <class 'dict'> -> <class 'BaseModel'>
+```
+1. we can recreate a BaseModel from another one by using a dictionary representation
+2. Convert the dictionary representation to a JSON string in order to reading for us, like humains.
+
+3. Simple Python data structure:
+```
+{ '12': { 'numbers': [1, 2, 3], 'name': "John" } }
+```
+4. JSON string representation: 
+```
+'{ "12": { "numbers": [1, 2, 3], "name": "John" } }'
+```
+5. Serialization : Instance -> Json File<br>
+Using "dump" for making a file Json
+6. Deserialization : Json File -> Instance<br>
+Using "load" for making a file Python
+
 * __How to write and read a JSON file ?__
+1. import json
+2. Create a dictionary object
+3. Open the dictionary object file
+4. Using "dump" for creating a Json file to write as Json data type
+5. Open the file Json
+6. Using "load" for creating the dictionary file to read as Python data type
 
 * __How to manage `datetime` ?__
+The datetime module supplies classes for manipulating dates and times
+1. from datetime import datetime : A combination of a date and a time. Attributes: year, month, day, hour, minute, second, microsecond, and tzinfo
+2. To initialize the instance attributes ("created_at" and "updated_at") as `datetime.now()`
+```
+datetime.datetime(2017, 9, 28, 21, 5, 54, 119434)
+
+```
+3. isoformat() : DATE and TIME -> String
+```
+   isoformat() = Return a string representing the date in ISO 8601 format, YYYY-MM-DD:
+   
+   ex) 
+   import datetime
+
+   dt = datetime.datetime(2018, 12, 31, 5, 0, 30, 1000)
+   print(d)
+   # 2018-12-31 05:00:30.001000
+
+   print(type(d))
+   # <class 'datetime.datetime'>
+   
+   print(d.isoformat())
+   # 2018-12-31T05:00:30.001000
+   
+   print(type(d.isoformat()))
+   # <class 'str'>
+   
+```
+4. fromisoformat() : String -> DATE and TIME
+```
+ex)
+import datetime
+
+s = '2018-12-31T05:00:30.001000'
+dt = datetime.datetime.fromisoformat(s)
+
+print(dt)
+# 2018-12-31 05:00:30.001000
+
+print(type(dt))
+# <class 'datetime.datetime'>
+
+print(datetime.datetime.fromisoformat('2018-12-31x05:00:30.001000'))
+# 2018-12-31 05:00:30.001000
+
+# print(datetime.datetime.fromisoformat('2018-12-31xx05:00:30.001000'))
+# ValueError: Invalid isoformat string: '2018-12-31xx05:00:30.001000'
+
+```
+
+5. To be converted from string to date time object:
+```
+   strptime() = String to date and time conversion
+
+  ex) datetime.datetime(2017, 9, 28, 21, 5, 54, 119572)
+  -> datetime.strptime("%Y-%m-%dT%H:%M:%S.%f")
+  ->'2017-09-28T21:05:54.119572'
+  
+```
 
 * __What is an `UUID` ?__
+```
+When you want a unique ID, you should call uuid1() or uuid4().<br>
+uuid1(): may compromise privacy since it creates a UUID containing the computer’s network address<br>
+uuid4(): creates a random UUID<br>
+str(uuid) returns a string in the form 12345678-1234-5678-1234-567812345678 where the 32 hexadecimal digits represent the UUID
+```
 
 * __What is `*args` and how to use it ?__
+We can pass a variable number of arguments to a function by using `*args` and `**kwargs` in our code.<br>
+In Python, the single-asterisk form of `*args` can be used as a parameter to send a non-keyworded variable-length argument list to functions.
 
 * __What is `**kwargs` and how to use it ?__
+The double asterisk form of `**kwargs` is used to pass a keyworded, variable-length argument dictionary to a function.
+Like `*args`, `**kwargs` can take however many arguments you would like to supply to it. However, `**kwargs` differs from *args in that you will need to assign keywords. When we use `**kwargs` as a parameter, we don’t need to know how many arguments we would eventually like to pass to a function.
 
 * __How to handle named arguments in a function ?__
 
