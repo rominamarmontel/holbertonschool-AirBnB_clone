@@ -216,10 +216,12 @@ str(uuid) returns a string in the form 12345678-1234-5678-1234-567812345678 wher
 * __What is `*args` and how to use it ?__
 We can pass a variable number of arguments to a function by using `*args` and `**kwargs` in our code.<br>
 In Python, the single-asterisk form of `*args` can be used as a parameter to send a non-keyworded variable-length argument list to functions.
+Accepts multiple arguments as a tuple.
 
 * __What is `**kwargs` and how to use it ?__
 The double asterisk form of `**kwargs` is used to pass a keyworded, variable-length argument dictionary to a function.
-Like `*args`, `**kwargs` can take however many arguments you would like to supply to it. However, `**kwargs` differs from *args in that you will need to assign keywords. When we use `**kwargs` as a parameter, we don’t need to know how many arguments we would eventually like to pass to a function.
+Like `*args`, `**kwargs` can take however many arguments you would like to supply to it. However, `**kwargs` differs from *args in that you will need to assign keywords. When we use `**kwargs` as a parameter, we don’t need to know how many arguments we would eventually like to pass to a function.<br>
+Accepts multiple keyword arguments as a dictionary
 
 * __How to handle named arguments in a function ?__
 
