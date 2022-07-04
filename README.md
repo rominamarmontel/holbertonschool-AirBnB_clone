@@ -137,14 +137,15 @@ Using "dump" for making a file Json
 Using "load" for making a file Python
 
 * __How to write and read a JSON file ?__
+```
 1. import json
 2. Create a dictionary object
 3. Open the dictionary object file
 4. Using "dump" for creating a Json file to write as Json data type
 5. Open the file Json
 6. Using "load" for creating the dictionary file to read as Python data type
-
-* __How to manage `datetime` ?__
+```
+* __How to manage `datetime` ?__<br>
 The datetime module supplies classes for manipulating dates and times
 1. from datetime import datetime : A combination of a date and a time. Attributes: year, month, day, hour, minute, second, microsecond, and tzinfo
 2. To initialize the instance attributes ("created_at" and "updated_at") as `datetime.now()`
@@ -214,14 +215,19 @@ str(uuid) returns a string in the form 12345678-1234-5678-1234-567812345678 wher
 ```
 
 * __What is `*args` and how to use it ?__
+```
 We can pass a variable number of arguments to a function by using `*args` and `**kwargs` in our code.<br>
 In Python, the single-asterisk form of `*args` can be used as a parameter to send a non-keyworded variable-length argument list to functions.
 Accepts multiple arguments as a tuple.
-
+```
 * __What is `**kwargs` and how to use it ?__
+```
 The double asterisk form of `**kwargs` is used to pass a keyworded, variable-length argument dictionary to a function.
-Like `*args`, `**kwargs` can take however many arguments you would like to supply to it. However, `**kwargs` differs from *args in that you will need to assign keywords. When we use `**kwargs` as a parameter, we don’t need to know how many arguments we would eventually like to pass to a function.<br>
+Like `*args`, `**kwargs` can take however many arguments you would like to supply to it.<br>
+However, `**kwargs` differs from *args in that you will need to assign keywords.<br>
+When we use `**kwargs` as a parameter, we don’t need to know how many arguments we would eventually like to pass to a function.<br>
 Accepts multiple keyword arguments as a dictionary
+```
 
 * __How to handle named arguments in a function ?__
 
