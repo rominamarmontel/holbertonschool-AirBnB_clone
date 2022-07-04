@@ -45,6 +45,14 @@ First, we create a directory and give it a package name, preferably related to i
 
 * __How to create a command interpreter in Python using the `cmd` module ?__
 
+1. import cmd
+2. create class HBNBCommand(cmd.Cmd)
+3. set the prompt as "(hbnb) "
+4. create the commands with module "def do_XXX"
+5. At the end of file,<br>
+if __name__ == '__main__':<br>
+    HBNBCommand().cmdloop()
+
 * __What is Unit testing and how to implement it in a large project ?__
 
 * __How to serialize and deserialize a Class ?__
